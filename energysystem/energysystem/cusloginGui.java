@@ -120,7 +120,7 @@ public class cusloginGui extends JFrame implements ActionListener{
     		int line = 0;
 
     		while((tempString = reader.readLine())!=null){
-				System.out.println(tempString+"\n");
+				//System.out.println(tempString+"\n");
 
 				//System.out.println(reader.readLine()+"\n");
     			String[] content = tempString.split(" ");
@@ -143,7 +143,7 @@ public class cusloginGui extends JFrame implements ActionListener{
     			line++;
     		}
     		reader.close();
-			System.out.println("line"+line+"\n");
+			//System.out.println("line"+line+"\n");
 
 		}catch(IOException e){
     		e.printStackTrace();

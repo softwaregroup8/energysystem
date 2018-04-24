@@ -18,9 +18,11 @@ public class cusGui extends JFrame implements ActionListener{
 	JLabel jlb,jlb1,jlb2 = null;
 	JPasswordField jpf = null;
 	int type;
+	int id;
 
-	public void initcusGui(int type1){
+	public void initcusGui(int type1, int line1){
 		type = type1;
+		id = line1;
 		//Create buttons
 		JButton jb1 = new JButton("Next");
 		JButton jb2 = new JButton("Back");
@@ -28,17 +30,26 @@ public class cusGui extends JFrame implements ActionListener{
 		//Add listener
 		jb1.addActionListener(this);
 		jb2.addActionListener(this);
-	//	jb3.addActionListener(this);
+		//	jb3.addActionListener(this);
 
 		jlb = new JLabel("Please select a business which you want:");
 
 		if(type==1) {
 			jrb1 = new JRadioButton("Check Budget");
 			jrb2 = new JRadioButton("Check power consumption");
+			jrb2.addActionListener(this);
 			jrb3 = new JRadioButton("Check gas consumption");
+			jrb3.addActionListener(this);
 			jrb4 = new JRadioButton("View historical data");
 			jrb5 = new JRadioButton("Check the tariff");
 			jrb6 = new JRadioButton("Buy energy");
+			ButtonGroup bgroup = new ButtonGroup();
+			bgroup.add(jrb1);
+			bgroup.add(jrb2);
+			bgroup.add(jrb3);
+			bgroup.add(jrb4);
+			bgroup.add(jrb5);
+			bgroup.add(jrb6);
 		}
 		else{
 			jrb1 = new JRadioButton("Check monthly bills");
@@ -47,6 +58,13 @@ public class cusGui extends JFrame implements ActionListener{
 			jrb4 = new JRadioButton("Change the tariff of gas");
 			jrb5 = new JRadioButton("Change the tariff of electric");
 			jrb6 = new JRadioButton("Cut off energy of specific user");
+			ButtonGroup bgroup = new ButtonGroup();
+			bgroup.add(jrb1);
+			bgroup.add(jrb2);
+			bgroup.add(jrb3);
+			bgroup.add(jrb4);
+			bgroup.add(jrb5);
+			bgroup.add(jrb6);
 		}
 		jp1 = new JPanel();
 		jp2 = new JPanel();
@@ -86,10 +104,18 @@ public class cusGui extends JFrame implements ActionListener{
 
 	/*Decide which identification is selected.*/
 	public void actionPerformed(ActionEvent e){
-		if(e.getActionCommand() =="Next"){  
-        	/*If customer want to continue.*/  
-           // cuslogin();   //check                            
-        }else if(e.getActionCommand()=="Back"){
+		if(e.getActionCommand()=="Next"){
+			if(jrb2.isSelected()&&type==1){
+				/*If customer want to continue.*/
+				// cuslogin();   //check
+				Check c=new Check();
+				c.CheckPower(id);
+
+			}else if(jrb3.isSelected()&&type==1){
+				Check c=new Check();
+				c.CheckGas(id);
+			}
+		}else if(e.getActionCommand()=="Back"){
         	dispose();
             cusloginGui cusUI = new cusloginGui();
             if(type==1) {
@@ -98,7 +124,7 @@ public class cusGui extends JFrame implements ActionListener{
 			else{
 				cusUI.initlogUI(2);
 			}
-        }  
+        }
 	}
 }
 

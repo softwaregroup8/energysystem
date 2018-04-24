@@ -17,6 +17,7 @@ public class cusloginGui extends JFrame implements ActionListener{
 	JLabel jlb,jlb1,jlb2 = null;
 	JPasswordField jpf = null;
 	int type;
+	int line=0;
 	String fileName;
 
 	public void initlogUI(int type1){
@@ -117,7 +118,7 @@ public class cusloginGui extends JFrame implements ActionListener{
     	try{
     		reader = new BufferedReader(new FileReader(fileName));
     		String tempString = null;
-    		int line = 0;
+    		//int line = 0;
 
     		while((tempString = reader.readLine())!=null){
 				//System.out.println(tempString+"\n");
@@ -163,10 +164,10 @@ public class cusloginGui extends JFrame implements ActionListener{
             clear();
             if(typetxt==1){
             	cusGui ui=new cusGui();
-            	ui.initcusGui(1);
+            	ui.initcusGui(1,line);
             }else{
 				cusGui ui=new cusGui();
-				ui.initcusGui(2);
+				ui.initcusGui(2,line);
 			}
         }else if(name.isEmpty()&&code.isEmpty()){  
 

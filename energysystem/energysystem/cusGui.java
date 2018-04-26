@@ -105,7 +105,10 @@ public class cusGui extends JFrame implements ActionListener{
 	/*Decide which identification is selected.*/
 	public void actionPerformed(ActionEvent e){
 		if(e.getActionCommand()=="Next"){
-			if(jrb2.isSelected()&&type==1){
+			if(jrb1.isSelected()&&type==1){
+				Check c=new Check();
+				c.Checkbudget(id);
+			}else if(jrb2.isSelected()&&type==1){
 				/*If customer want to continue.*/
 				// cuslogin();   //check
 				Check c=new Check();
@@ -114,6 +117,15 @@ public class cusGui extends JFrame implements ActionListener{
 			}else if(jrb3.isSelected()&&type==1){
 				Check c=new Check();
 				c.CheckGas(id);
+			}else if(jrb4.isSelected()&&type==1){
+				//Check c=new Check();
+				//
+			}else if(jrb5.isSelected()&&type==1){
+				Check c=new Check();
+				c.Checktariff();
+			}else if(jrb6.isSelected()&&type==1){
+				//Check c=new Check();
+				//
 			}
 		}else if(e.getActionCommand()=="Back"){
         	dispose();
